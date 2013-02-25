@@ -119,7 +119,7 @@
 		[label setShadowColor:[UIColor blackColor]];
 		[label setShadowOffset:CGSizeMake(1, 0)];
 		[label setText:msg];
-		
+        
 		// スクロールビューの初期化
 		[self.scrollView removeFromSuperview];
 		self.scrollView = nil;
@@ -142,10 +142,8 @@
 	[super setFrame:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, [self getFrameHeight])];
 }
 
+- (NSString*) getButtonClassName {
 
-- (void) layoutSubviews {	
-	CGFloat frameHeight = [self getFrameHeight];
-	
     // 参照するコントロールがシステムバージョンを取得する
     NSString* className = @"UIThreePartButton";
     NSString* version = [[UIDevice currentDevice] systemVersion];
@@ -153,6 +151,13 @@
     if (ver >= 5.0) {
         className = @"UIAlertButton";
     }
+
+    return className;
+}
+
+- (void) layoutSubviews {	
+	CGFloat frameHeight = [self getFrameHeight];
+    NSString* className = [self getButtonClassName];
     
 	// UIAlertViewのボタンの位置をここで設定しなおす
 	// 非公式APIを使用すれば使えば一発だがボタンを一つずつ配置しなおしていく
@@ -160,7 +165,7 @@
 	for (UIView* view in self.subviews) {
 
 		// UIAlertView上で使用されるボタンはUIButtonではなく
-		// UIThreePartButtonという専用なのでクラス名をチェックしていく
+		// UIThreePartButton(またはUIAlertButton)という専用なのでクラス名をチェックしていく
 		if ([view isKindOfClass:NSClassFromString(className)]) {
 			CGRect r = view.frame;
 			CGFloat originY = frameHeight - (BUTTON_HEIGHT * row) - BUTTON_ORIGIN_Y;
@@ -175,6 +180,5 @@
 	self.scrollView = nil;
     [super dealloc];
 }
-
 
 @end
