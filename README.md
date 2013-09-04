@@ -19,56 +19,48 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
 OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-## Welcome
+## ScrollAlertView
 
 UIAlertViewで長文のテキストを表示することが出来ません。これは、スクロール可能なテキストを表示させるAlertViewを提供するプロジェクトです。ScrollAlertViewの使い方は、UIAlertViewと同じです。
 
-=== Usege ===
+### Usege - 使い方
 
 あなたのプロジェクトで使用する場合、ScrollAlertView.hとScrollAlertView.mだけをインポートします。ScrollAlertViewSampleプロジェクトを動かしても動作確認が可能です。XCode 3.2.4, iOS SDK 4.2で動作確認を行いました。
 
-===== 普通(キャンセルボタン、ボタンが１つ)にアラートを使用する =====
+#### 普通(キャンセルボタン、ボタンが１つ)にアラートを使用する
 
-{{{
-#!objc
-
+```objc
 ScrollAlertView* alert = [[ScrollAlertView alloc] initWithTitle:@"アラートのテスト"  
-                                                message:@"こんにちは　ありがとう\nさよなら\nまた会いましょう"
-                                               delegate:nil
-                                      cancelButtonTitle:@"キャンセル" 
-                                      otherButtonTitles:@"ボタンその１",nil];
+                message:@"こんにちは　ありがとう\nさよなら\nまた会いましょう"
+               delegate:nil
+      cancelButtonTitle:@"キャンセル" 
+      otherButtonTitles:@"ボタンその１",nil];
 [alert show];
 [alert release];
-}}}
+```
+![](http://cdn-ak.f.st-hatena.com/images/fotolife/c/ch3cooh393/20110718/20110718223044.png)
 
-{{http://cdn-ak.f.st-hatena.com/images/fotolife/c/ch3cooh393/20110718/20110718223044.png|}}
+#### キャンセルボタンとボタンが２つのアラートを使用する
 
-===== キャンセルボタンとボタンが２つのアラートを使用する =====
-
-{{{
-#!objc
-
+```objc
 ScrollAlertView* alert = [[ScrollAlertView alloc] initWithTitle:@"アラートのテスト"  
-                                                message:@"ああああああいいいいいうううううえええええおおおおおおかかかかかきききききくくくくく"
-                                               delegate:nil
-                                      cancelButtonTitle:@"キャンセル" 
-                                      otherButtonTitles:@"ボタン２", @"ボタン１", nil];
+                message:@"ああああああいいいいいうううううえええええおおおおおおかかかかかきききききくくくくく"
+               delegate:nil
+      cancelButtonTitle:@"キャンセル" 
+      otherButtonTitles:@"ボタン２", @"ボタン１", nil];
 [alert show];
 [alert release];
-}}}
+```
 
-{{http://cdn-ak.f.st-hatena.com/images/fotolife/c/ch3cooh393/20110718/20110718223046.png|}}
+![](http://cdn-ak.f.st-hatena.com/images/fotolife/c/ch3cooh393/20110718/20110718223046.png)
 
-===== 表示するテキストの行数を変更する =====
+#### 表示するテキストの行数を変更する
 
 文字数が多くて、表示可能なテキストの行数を超えてしまった場合、スクロールを行います。デフォルト値として表示するテキストの行数は3行としていますが、2行にを変更したい場合、下記のように変更します。
 
-{{{
-#!objc
-
+```objc
 // テキストの行数
 //#define TEXT_LINES (3)
 #define TEXT_LINES (2)
-}}}
-
-{{http://cdn-ak.f.st-hatena.com/images/fotolife/c/ch3cooh393/20110718/20110718223047.png|}}
+```
+![](http://cdn-ak.f.st-hatena.com/images/fotolife/c/ch3cooh393/20110718/20110718223047.png)
